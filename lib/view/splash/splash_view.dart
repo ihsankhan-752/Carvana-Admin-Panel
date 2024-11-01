@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../res/components/logo_widget.dart';
-import '../services/splash_services.dart';
+import '../../view_model/services/splash_services.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

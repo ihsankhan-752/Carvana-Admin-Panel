@@ -1,6 +1,7 @@
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:get/get.dart';
 
+import '../../view/auth/login_view.dart';
 import '../../view/splash/splash_view.dart';
 
 class AppRoutes {
@@ -11,10 +12,11 @@ class AppRoutes {
         page: () => const SplashView(),
         transition: Transition.leftToRightWithFade,
       ),
-      // GetPage(
-      //   name: RoutesName.loginView,
-      //   page: () => LoginView(),
-      // ),
+      GetPage(
+        name: RoutesName.loginView,
+        page: () => LoginView(),
+        transition: Transition.rightToLeftWithFade,
+      ),
       // GetPage(
       //   name: RoutesName.signUpView,
       //   page: () => SignUpView(),
