@@ -1,6 +1,7 @@
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:get/get.dart';
 
+import '../../view/auth/forgot_password_view.dart';
 import '../../view/auth/login_view.dart';
 import '../../view/auth/signup_view.dart';
 import '../../view/splash/splash_view.dart';
@@ -23,10 +24,11 @@ class AppRoutes {
         page: () => SignUpView(),
         transition: Transition.rightToLeftWithFade,
       ),
-      // GetPage(
-      //   name: RoutesName.forgotPasswordView,
-      //   page: () => ForgotPasswordView(),
-      // ),
+      GetPage(
+        name: RoutesName.forgotPasswordView,
+        page: () => ForgotPasswordView(),
+        transition: Transition.rightToLeftWithFade,
+      ),
       // GetPage(
       //   name: RoutesName.firstOnboardingView,
       //   page: () => const FirstOnboardingView(),
