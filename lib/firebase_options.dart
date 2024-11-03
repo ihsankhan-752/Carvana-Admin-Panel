@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,9 +28,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
-        return windows;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -40,49 +49,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDb_qM0YRN5iFesfOXrAPQzcYUdRzJhn0g',
-    appId: '1:1064041710776:web:5cc1f2ce267e2b2cb3e04d',
-    messagingSenderId: '1064041710776',
-    projectId: 'carnava-15594',
-    authDomain: 'carnava-15594.firebaseapp.com',
-    storageBucket: 'carnava-15594.firebasestorage.app',
-    measurementId: 'G-90JW58JEWF',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC60fyODiy8m75kwZvjRVocyIu_q0n6U74',
-    appId: '1:1064041710776:android:b8b4666226b0f8b9b3e04d',
-    messagingSenderId: '1064041710776',
-    projectId: 'carnava-15594',
-    storageBucket: 'carnava-15594.firebasestorage.app',
+    apiKey: 'AIzaSyBrosZE5umxqVccztYw-F3tlveCoAuqaFM',
+    appId: '1:1002790167904:android:aa96a94a2ff60095376a05',
+    messagingSenderId: '1002790167904',
+    projectId: 'restaurant-automation-6f0aa',
+    storageBucket: 'restaurant-automation-6f0aa.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDQwoPVZIO6C694w8dxtIi3SmufzMPDPCI',
-    appId: '1:1064041710776:ios:28d202276f5dee2bb3e04d',
-    messagingSenderId: '1064041710776',
-    projectId: 'carnava-15594',
-    storageBucket: 'carnava-15594.firebasestorage.app',
+    apiKey: 'AIzaSyBRxxHgIUuMsBXGnsoOmnQM-s5k1Kf3ADg',
+    appId: '1:1002790167904:ios:9a1909db8e67c80d376a05',
+    messagingSenderId: '1002790167904',
+    projectId: 'restaurant-automation-6f0aa',
+    storageBucket: 'restaurant-automation-6f0aa.appspot.com',
     iosBundleId: 'com.example.carnavaAdminPanel',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDQwoPVZIO6C694w8dxtIi3SmufzMPDPCI',
-    appId: '1:1064041710776:ios:28d202276f5dee2bb3e04d',
-    messagingSenderId: '1064041710776',
-    projectId: 'carnava-15594',
-    storageBucket: 'carnava-15594.firebasestorage.app',
-    iosBundleId: 'com.example.carnavaAdminPanel',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDb_qM0YRN5iFesfOXrAPQzcYUdRzJhn0g',
-    appId: '1:1064041710776:web:3bbae2320ad78c12b3e04d',
-    messagingSenderId: '1064041710776',
-    projectId: 'carnava-15594',
-    authDomain: 'carnava-15594.firebaseapp.com',
-    storageBucket: 'carnava-15594.firebasestorage.app',
-    measurementId: 'G-5066Q1P6BH',
   );
 }

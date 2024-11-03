@@ -4,7 +4,8 @@ import '../../../../res/colors/app_colors.dart';
 import '../../../../res/text_styles/app_text_styles.dart';
 
 class CarPricingTextInput extends StatelessWidget {
-  const CarPricingTextInput({super.key});
+  final TextEditingController controller;
+  const CarPricingTextInput({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,8 @@ class CarPricingTextInput extends StatelessWidget {
         ),
         const SizedBox(height: 05),
         TextField(
+          controller: controller,
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
           decoration: InputDecoration(
             fillColor: AppColors.primaryGrey.withOpacity(0.1),
             filled: true,

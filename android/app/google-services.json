@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "1064041710776",
-    "project_id": "carnava-15594",
-    "storage_bucket": "carnava-15594.firebasestorage.app"
+    "project_number": "1002790167904",
+    "project_id": "restaurant-automation-6f0aa",
+    "storage_bucket": "restaurant-automation-6f0aa.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1064041710776:android:b8b4666226b0f8b9b3e04d",
+        "mobilesdk_app_id": "1:1002790167904:android:fb113ff052fabdb5376a05",
         "android_client_info": {
-          "package_name": "com.example.carnava_admin_panel"
+          "package_name": "com.example.admin_side_res"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC60fyODiy8m75kwZvjRVocyIu_q0n6U74"
+          "current_key": "AIzaSyBrosZE5umxqVccztYw-F3tlveCoAuqaFM"
         }
       ],
       "services": {
@@ -26,15 +26,53 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1064041710776:android:5e52c0cf70938b3cb3e04d",
+        "mobilesdk_app_id": "1:1002790167904:android:aa96a94a2ff60095376a05",
         "android_client_info": {
-          "package_name": "com.example.carvana"
+          "package_name": "com.example.carnava_admin_panel"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC60fyODiy8m75kwZvjRVocyIu_q0n6U74"
+          "current_key": "AIzaSyBrosZE5umxqVccztYw-F3tlveCoAuqaFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002790167904:android:6e6dae6e59ac2a80376a05",
+        "android_client_info": {
+          "package_name": "com.example.cook_side_res"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrosZE5umxqVccztYw-F3tlveCoAuqaFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002790167904:android:de0d11d80a186d99376a05",
+        "android_client_info": {
+          "package_name": "com.example.user_side_res"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrosZE5umxqVccztYw-F3tlveCoAuqaFM"
         }
       ],
       "services": {

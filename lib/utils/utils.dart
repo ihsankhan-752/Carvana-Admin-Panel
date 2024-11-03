@@ -19,6 +19,14 @@ class Utils {
     );
   }
 
+  static centerToastMessage(String msg) {
+    Fluttertoast.showToast(
+      msg: msg,
+      backgroundColor: AppColors.alertColor,
+      gravity: ToastGravity.BOTTOM,
+    );
+  }
+
   static showSnackBar(String title, String msg) {
     Get.snackbar(
       title,
