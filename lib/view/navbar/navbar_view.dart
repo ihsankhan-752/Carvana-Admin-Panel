@@ -1,3 +1,4 @@
+import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:carnava_admin_panel/view/navbar/widgets/custom_tab_widget_navbar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,11 +17,15 @@ class _NavbarViewState extends State<NavbarView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primaryColor,
-        onPressed: () {},
-        child: const Icon(Icons.add, color: AppColors.primaryWhite),
-      ),
+      floatingActionButton: currentIndex == 0
+          ? FloatingActionButton(
+              backgroundColor: AppColors.primaryColor,
+              onPressed: () {
+                Get.toNamed(RoutesName.carUploadingView);
+              },
+              child: const Icon(Icons.add, color: AppColors.primaryWhite),
+            )
+          : const SizedBox(),
       bottomNavigationBar: Container(
         height: Get.height * 0.07,
         color: AppColors.primaryWhite,

@@ -1,4 +1,5 @@
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
+import 'package:carnava_admin_panel/view/navbar/car_uploading_view/car_uploading_view.dart';
 import 'package:carnava_admin_panel/view/navbar/navbar_view.dart';
 import 'package:get/get.dart';
 
@@ -33,6 +34,11 @@ class AppRoutes {
       GetPage(
         name: RoutesName.navbarView,
         page: () => const NavbarView(),
+        transition: Transition.rightToLeftWithFade,
+      ),
+      GetPage(
+        name: RoutesName.carUploadingView,
+        page: () => const CarUploadingView(),
         transition: Transition.rightToLeftWithFade,
       ),
       // GetPage(
