@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "629084541665",
-    "project_id": "carnava-admin-panel",
-    "storage_bucket": "carnava-admin-panel.firebasestorage.app"
+    "project_number": "1064041710776",
+    "project_id": "carnava-15594",
+    "storage_bucket": "carnava-15594.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:629084541665:android:6a5435f84049d9c14cdda0",
+        "mobilesdk_app_id": "1:1064041710776:android:b8b4666226b0f8b9b3e04d",
         "android_client_info": {
           "package_name": "com.example.carnava_admin_panel"
         }
@@ -15,7 +15,26 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBAbsQXV7JTX6pPHXb7CLmbGQ1MKjgOiE4"
+          "current_key": "AIzaSyC60fyODiy8m75kwZvjRVocyIu_q0n6U74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064041710776:android:5e52c0cf70938b3cb3e04d",
+        "android_client_info": {
+          "package_name": "com.example.carvana"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC60fyODiy8m75kwZvjRVocyIu_q0n6U74"
         }
       ],
       "services": {

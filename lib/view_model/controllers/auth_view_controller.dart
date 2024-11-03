@@ -1,5 +1,6 @@
 import 'package:carnava_admin_panel/models/admin_model.dart';
 import 'package:carnava_admin_panel/repository/auth_repository.dart';
+import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,6 +21,12 @@ class AuthViewController extends GetxController {
     isPassVisible.value = !isPassVisible.value;
   }
 
+  void clearTextInputs() {
+    emailController.value.clear();
+    usernameController.value.clear();
+    passwordController.value.clear();
+  }
+
   Future<void> signUpUser({required String username, required String email, required String password}) async {
     if (username.isEmpty) {
       Utils.toastMessage('username required');
@@ -35,7 +42,7 @@ class AuthViewController extends GetxController {
           email: email,
           password: password,
         );
-        //ToDo Going  to home
+        Get.toNamed(RoutesName.navbarView);
       } catch (e) {
         Utils.toastMessage(e.toString());
       } finally {
@@ -54,7 +61,7 @@ class AuthViewController extends GetxController {
         isLoading.value = true;
         await _authRepo.signInUser(email, password);
 
-        //ToDo Going to HOme Page
+        Get.toNamed(RoutesName.navbarView);
       } catch (e) {
         isLoading.value = false;
       } finally {

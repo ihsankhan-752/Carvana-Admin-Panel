@@ -25,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -47,29 +41,48 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAeQ9XxBLAD0CQzZEsGj41Q4sUmAXu3FA4',
-    appId: '1:629084541665:web:7a6167b34e2772b64cdda0',
-    messagingSenderId: '629084541665',
-    projectId: 'carnava-admin-panel',
-    authDomain: 'carnava-admin-panel.firebaseapp.com',
-    storageBucket: 'carnava-admin-panel.firebasestorage.app',
-    measurementId: 'G-2WRDZQBMCP',
+    apiKey: 'AIzaSyDb_qM0YRN5iFesfOXrAPQzcYUdRzJhn0g',
+    appId: '1:1064041710776:web:5cc1f2ce267e2b2cb3e04d',
+    messagingSenderId: '1064041710776',
+    projectId: 'carnava-15594',
+    authDomain: 'carnava-15594.firebaseapp.com',
+    storageBucket: 'carnava-15594.firebasestorage.app',
+    measurementId: 'G-90JW58JEWF',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBAbsQXV7JTX6pPHXb7CLmbGQ1MKjgOiE4',
-    appId: '1:629084541665:android:6a5435f84049d9c14cdda0',
-    messagingSenderId: '629084541665',
-    projectId: 'carnava-admin-panel',
-    storageBucket: 'carnava-admin-panel.firebasestorage.app',
+    apiKey: 'AIzaSyC60fyODiy8m75kwZvjRVocyIu_q0n6U74',
+    appId: '1:1064041710776:android:b8b4666226b0f8b9b3e04d',
+    messagingSenderId: '1064041710776',
+    projectId: 'carnava-15594',
+    storageBucket: 'carnava-15594.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAyv65OW2YZoII4ZV2JCLC5tdFQ6oUGEfs',
-    appId: '1:629084541665:ios:d5ab412e5a3f47de4cdda0',
-    messagingSenderId: '629084541665',
-    projectId: 'carnava-admin-panel',
-    storageBucket: 'carnava-admin-panel.firebasestorage.app',
+    apiKey: 'AIzaSyDQwoPVZIO6C694w8dxtIi3SmufzMPDPCI',
+    appId: '1:1064041710776:ios:28d202276f5dee2bb3e04d',
+    messagingSenderId: '1064041710776',
+    projectId: 'carnava-15594',
+    storageBucket: 'carnava-15594.firebasestorage.app',
     iosBundleId: 'com.example.carnavaAdminPanel',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDQwoPVZIO6C694w8dxtIi3SmufzMPDPCI',
+    appId: '1:1064041710776:ios:28d202276f5dee2bb3e04d',
+    messagingSenderId: '1064041710776',
+    projectId: 'carnava-15594',
+    storageBucket: 'carnava-15594.firebasestorage.app',
+    iosBundleId: 'com.example.carnavaAdminPanel',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyDb_qM0YRN5iFesfOXrAPQzcYUdRzJhn0g',
+    appId: '1:1064041710776:web:3bbae2320ad78c12b3e04d',
+    messagingSenderId: '1064041710776',
+    projectId: 'carnava-15594',
+    authDomain: 'carnava-15594.firebaseapp.com',
+    storageBucket: 'carnava-15594.firebasestorage.app',
+    measurementId: 'G-5066Q1P6BH',
   );
 }

@@ -1,3 +1,4 @@
+import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:carnava_admin_panel/view/auth/widgets/auth_footer_widget.dart';
 import 'package:carnava_admin_panel/view/auth/widgets/email_input_widget.dart';
 import 'package:carnava_admin_panel/view/auth/widgets/password_input_widget.dart';
@@ -8,7 +9,6 @@ import 'package:get/get.dart';
 
 import '../../res/colors/app_colors.dart';
 import '../../res/components/buttons/primary_button.dart';
-import '../../res/routes/routes_name.dart';
 import '../../res/text_styles/app_text_styles.dart';
 
 class SignUpView extends StatelessWidget {
@@ -37,10 +37,27 @@ class SignUpView extends StatelessWidget {
               SizedBox(height: Get.height * 0.02),
               PasswordInputWidget(controller: authController.passwordController.value),
               SizedBox(height: Get.height * 0.04),
-              PrimaryButton(
-                onPressed: () {},
-                title: "Sign Up",
-              ),
+              Obx((){
+                return  authController.isLoading.value
+                    ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+                    : PrimaryButton(
+                  onPressed: () {
+                    authController
+                        .signUpUser(
+                      username: authController.usernameController.value.text,
+                      email: authController.emailController.value.text,
+                      password: authController.passwordController.value.text,
+                    )
+                        .whenComplete(() {
+                      authController.clearTextInputs();
+                    });
+                  },
+                  title: "Sign Up",
+                );
+              }),
+
               SizedBox(height: Get.height * 0.045),
               GestureDetector(
                 onTap: () {
