@@ -10,7 +10,7 @@ import 'package:carnava_admin_panel/view_model/controllers/car_view_controller.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../view_model/controllers/image_controller.dart';
+import '../../../res/components/image_picking_widget.dart';
 
 class CarUploadingView extends StatefulWidget {
   const CarUploadingView({super.key});
@@ -193,12 +193,6 @@ class _CarUploadingViewState extends State<CarUploadingView> {
                   )
                 : PrimaryButton(
                     onPressed: () {
-                      print("Uploading Car Details:");
-                      print("Car Name: ${carController.carNameController.value.text}");
-                      print("Selected Brand: ${carController.selectedCarBrand.value}");
-                      print("Image: ${imageController.image.value?.path}");
-                      print("Price Per Hour: ${carController.pricePerHourController.value.text}");
-
                       carController.uploadCar(
                         name: carController.carNameController.value.text,
                         image: imageController.image.value!,

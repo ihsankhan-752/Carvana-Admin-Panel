@@ -3,14 +3,15 @@ import 'dart:io';
 import 'package:carnava_admin_panel/models/car_model.dart';
 import 'package:carnava_admin_panel/repository/car_repository.dart';
 import 'package:carnava_admin_panel/utils/utils.dart';
-import 'package:carnava_admin_panel/view_model/controllers/image_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../repository/storage_repository.dart';
+
 class CarViewController extends GetxController {
   final CarRepository _carRepository = CarRepository();
-  final ImageController imageController = ImageController();
+  final StorageRepository storageRepository = StorageRepository();
 
   final carNameController = TextEditingController().obs;
   final pricePerHourController = TextEditingController().obs;
@@ -52,10 +53,9 @@ class CarViewController extends GetxController {
     try {
       isLoading.value = true;
       var carId = const Uuid().v4();
-      String? base64Image = await imageController.uploadImage();
-      print("Base64 Image: $base64Image");
 
-      if (base64Image != null) {
+      String? imageUrl = await storageRepository.uploadImage(image);
+      if (imageUrl != null) {
         CarModel carModel = CarModel(
           carId: carId,
           name: name,
@@ -64,7 +64,7 @@ class CarViewController extends GetxController {
           fuelType: fuelType,
           doors: doors,
           seats: seats,
-          imageUrl: base64Image,
+          imageUrl: imageUrl!,
           pricePerHour: pricePerHour,
         );
 
@@ -72,7 +72,7 @@ class CarViewController extends GetxController {
         Utils.toastMessage("Car Information Uploaded");
         Get.back();
       } else {
-        Utils.toastMessage("Image Required");
+        Utils.toastMessage("Image required");
       }
     } catch (e) {
       Utils.toastMessage(e.toString());

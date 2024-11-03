@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
@@ -23,31 +22,8 @@ class ImageController extends GetxController {
     }
   }
 
-  Future<String?> uploadImage() async {
-    if (image.value == null) {
-      print("No image to upload."); // Debugging line
-      return null;
-    }
-
-    final file = File(image.value!.path);
-    if (!await file.exists()) {
-      print("File does not exist at path: ${file.path}"); // Debugging line
-      return null;
-    }
-
-    try {
-      final bytes = await file.readAsBytes();
-      if (bytes.isEmpty) {
-        print("Image bytes are empty."); // Debugging line
-        return null;
-      }
-
-      String base64Image = base64Encode(bytes);
-      print("Base64 Image: $base64Image"); // Debugging line
-      return base64Image;
-    } catch (e) {
-      print("Error converting image to Base64: $e"); // Debugging line
-      return null;
-    }
+  // This method returns the file path of the picked image
+  String? getImageUrl() {
+    return image.value?.path; // Return the file path as URL
   }
 }
