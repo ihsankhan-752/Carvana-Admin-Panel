@@ -6,11 +6,11 @@ import 'package:flutter/foundation.dart';
 import '../app_exceptions.dart';
 
 class FireStoreServices {
-  final CollectionReference userCollection = FirebaseFirestore.instance.collection('users');
+  final CollectionReference adminCollection = FirebaseFirestore.instance.collection('admins');
 
   Future<void> saveUser(AdminModel adminModel) async {
     try {
-      await userCollection.doc(FirebaseAuth.instance.currentUser!.uid).set(adminModel.toMap());
+      await adminCollection.doc(FirebaseAuth.instance.currentUser!.uid).set(adminModel.toMap());
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());
@@ -20,7 +20,7 @@ class FireStoreServices {
 
   Future<AdminModel?> getUser(String userId) async {
     try {
-      DocumentSnapshot snap = await userCollection.doc(FirebaseAuth.instance.currentUser!.uid).get();
+      DocumentSnapshot snap = await adminCollection.doc(FirebaseAuth.instance.currentUser!.uid).get();
       if (snap.exists) {
         return AdminModel.fromMap(snap);
       } else {
