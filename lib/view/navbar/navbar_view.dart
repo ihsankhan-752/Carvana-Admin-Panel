@@ -16,6 +16,11 @@ class _NavbarViewState extends State<NavbarView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primaryColor,
+        onPressed: () {},
+        child: const Icon(Icons.add, color: AppColors.primaryWhite),
+      ),
       bottomNavigationBar: Container(
         height: Get.height * 0.07,
         color: AppColors.primaryWhite,
@@ -32,6 +37,7 @@ class _NavbarViewState extends State<NavbarView> {
                 },
                 icon: Icons.home_outlined,
                 color: currentIndex == 0 ? AppColors.primaryColor : AppColors.primaryBlack,
+                title: "Home",
               ),
               CustomTabWidgetNavBarView(
                 onPressed: () {
@@ -39,8 +45,9 @@ class _NavbarViewState extends State<NavbarView> {
                     currentIndex = 1;
                   });
                 },
-                icon: Icons.bookmark_border,
+                icon: Icons.calendar_month_sharp,
                 color: currentIndex == 1 ? AppColors.primaryColor : AppColors.primaryBlack,
+                title: "Booking",
               ),
               CustomTabWidgetNavBarView(
                 onPressed: () {
@@ -48,8 +55,9 @@ class _NavbarViewState extends State<NavbarView> {
                     currentIndex = 2;
                   });
                 },
-                icon: Icons.notifications_active_outlined,
+                icon: Icons.group,
                 color: currentIndex == 2 ? AppColors.primaryColor : AppColors.primaryBlack,
+                title: "Members",
               ),
               CustomTabWidgetNavBarView(
                 onPressed: () {
@@ -57,8 +65,9 @@ class _NavbarViewState extends State<NavbarView> {
                     currentIndex = 3;
                   });
                 },
-                icon: Icons.person,
+                icon: Icons.settings,
                 color: currentIndex == 3 ? AppColors.primaryColor : AppColors.primaryBlack,
+                title: "Settings",
               ),
             ],
           ),
