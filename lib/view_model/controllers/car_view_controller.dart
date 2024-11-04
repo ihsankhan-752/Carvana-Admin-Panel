@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:carnava_admin_panel/models/car_model.dart';
 import 'package:carnava_admin_panel/repository/car_repository.dart';
 import 'package:carnava_admin_panel/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -33,7 +32,7 @@ class CarViewController extends GetxController {
 
   Future<void> uploadCar({
     required String name,
-    required File image,
+    required Uint8List image,
     required String brand,
     required String airConditioning,
     required String transmission,
@@ -64,7 +63,7 @@ class CarViewController extends GetxController {
           fuelType: fuelType,
           doors: doors,
           seats: seats,
-          imageUrl: imageUrl!,
+          imageUrl: imageUrl,
           pricePerHour: pricePerHour,
         );
 

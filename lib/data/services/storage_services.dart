@@ -1,13 +1,12 @@
-import 'dart:io';
-
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 
 class StorageServices {
-  Future<String?> uploadImage(File imageFile) async {
+  Future<String?> uploadImage(Uint8List imageFile) async {
     try {
       FirebaseStorage fs = FirebaseStorage.instance;
       Reference ref = fs.ref().child(DateTime.now().millisecondsSinceEpoch.toString());
-      await ref.putFile(imageFile);
+      await ref.putData(imageFile);
       String url = await ref.getDownloadURL();
       return url;
     } catch (e) {

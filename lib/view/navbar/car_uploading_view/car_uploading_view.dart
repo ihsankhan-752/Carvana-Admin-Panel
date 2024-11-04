@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:carnava_admin_panel/res/colors/app_colors.dart';
 import 'package:carnava_admin_panel/res/components/buttons/primary_button.dart';
 import 'package:carnava_admin_panel/res/text_styles/app_text_styles.dart';
@@ -49,25 +47,47 @@ class _CarUploadingViewState extends State<CarUploadingView> {
                 GestureDetector(
                   onTap: () async {
                     await imageController.pickImage();
-                    // Add this debug print to see if the image is picked
-                    print("Picked Image Path: ${imageController.image.value?.path}");
                   },
                   child: Obx(() {
-                    return Container(
-                      height: 70,
-                      width: 70,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: AppColors.primaryColor, width: 2),
-                        image: imageController.image.value != null
-                            ? DecorationImage(
-                                image: FileImage(File(imageController.image.value!.path)),
-                                fit: BoxFit.cover,
-                              )
-                            : null,
-                      ),
-                      child: imageController.image.value == null ? const Center(child: Icon(Icons.add_a_photo_outlined)) : null,
-                    );
+                    return imageController.image.value == null
+                        ? Container(
+                            height: 70,
+                            width: 70,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: AppColors.primaryColor, width: 2),
+                            ),
+                            child: const Center(child: Icon(Icons.add_a_photo_outlined)),
+                          )
+                        : imageController.loading.value
+                            ? const Text("Wait Bg Remove in progress")
+                            : Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: AppColors.primaryColor, width: 2),
+                                    image: DecorationImage(
+                                      image: MemoryImage(imageController.imageWithoutBg.value!),
+                                      fit: BoxFit.cover,
+                                    )),
+                              );
+                    // return Container(
+                    //   height: 70,
+                    //   width: 70,
+                    //
+                    //   decoration: BoxDecoration(
+                    //     shape: BoxShape.circle,
+                    //     border: Border.all(color: AppColors.primaryColor, width: 2),
+                    //     image: imageController.image.value != null
+                    //         ? DecorationImage(
+                    //             image: MemoryImage(imageController.imageWithoutBg.value!),
+                    //             fit: BoxFit.cover,
+                    //           )
+                    //         : null,
+                    //   ),
+                    //   child: imageController.image.value == null ? const Center(child: Icon(Icons.add_a_photo_outlined)) : null,
+                    // );
                   }),
                 ),
                 const SizedBox(height: 20),
@@ -195,7 +215,7 @@ class _CarUploadingViewState extends State<CarUploadingView> {
                     onPressed: () {
                       carController.uploadCar(
                         name: carController.carNameController.value.text,
-                        image: imageController.image.value!,
+                        image: imageController.imageWithoutBg.value!!,
                         brand: carController.selectedCarBrand.value,
                         airConditioning: carController.selectedAirCondition.value,
                         transmission: carController.selectedTransmission.value,

@@ -1,11 +1,11 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import '../data/services/storage_services.dart';
 
 class StorageRepository {
   StorageServices storageServices = StorageServices();
 
-  Future<String?> uploadImage(File? image) async {
+  Future<String?> uploadImage(Uint8List? image) async {
     if (image == null) {
       return null;
     }
