@@ -87,7 +87,7 @@ class _NavbarViewState extends State<NavbarView> {
         children: [
           HomeView(),
           const BookingView(),
-          const MembersView(),
+          MembersView(),
           const SettingsView(),
         ],
       ),

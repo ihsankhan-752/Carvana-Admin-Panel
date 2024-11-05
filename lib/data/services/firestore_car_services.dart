@@ -12,4 +12,10 @@ class FireStoreCarServices {
       throw GeneralException(e.toString());
     }
   }
+
+  Stream<List<CarModel>> getAllCars() {
+    return carCollection.snapshots().map((snapshot) {
+      return snapshot.docs.map((e) => CarModel.fromMap(e)).toList();
+    });
+  }
 }
