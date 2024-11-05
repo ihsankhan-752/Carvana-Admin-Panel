@@ -1,4 +1,5 @@
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
+import 'package:carnava_admin_panel/view/navbar/home/home_view.dart';
 import 'package:carnava_admin_panel/view/navbar/widgets/custom_tab_widget_navbar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -80,7 +81,9 @@ class _NavbarViewState extends State<NavbarView> {
       ),
       body: IndexedStack(
         index: currentIndex,
-        children: [],
+        children: [
+          HomeView(),
+        ],
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:carnava_admin_panel/models/car_model.dart';
 import 'package:carnava_admin_panel/repository/car_repository.dart';
 import 'package:carnava_admin_panel/utils/utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,15 @@ class CarViewController extends GetxController {
 
   final carNameController = TextEditingController().obs;
   final pricePerHourController = TextEditingController().obs;
+  RxBool isInitialLoad = true.obs;
+
+  Rx<Stream<List<CarModel>>> carStream = Rx<Stream<List<CarModel>>>(const Stream.empty());
+
+  @override
+  void onInit() {
+    super.onInit();
+    carStream.value = _carRepository.getAllCars();
+  }
 
   RxString selectedCarBrand = 'Audi'.obs;
   RxString selectedTransmission = 'CVT'.obs;
@@ -56,6 +66,7 @@ class CarViewController extends GetxController {
       String? imageUrl = await storageRepository.uploadImage(image);
       if (imageUrl != null) {
         CarModel carModel = CarModel(
+          userId: FirebaseAuth.instance.currentUser!.uid,
           carId: carId,
           name: name,
           transmission: transmission,

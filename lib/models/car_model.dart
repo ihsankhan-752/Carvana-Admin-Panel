@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CarModel {
+  final String userId;
   final String carId;
   final String name;
   final String transmission;
@@ -12,6 +13,7 @@ class CarModel {
   final double pricePerHour;
 
   CarModel({
+    required this.userId,
     required this.carId,
     required this.name,
     required this.transmission,
@@ -25,6 +27,7 @@ class CarModel {
 
   Map<String, dynamic> toMap() {
     return {
+      'userId': userId,
       'carId': carId,
       'name': name,
       'transmission': transmission,
@@ -39,6 +42,7 @@ class CarModel {
 
   factory CarModel.fromMap(DocumentSnapshot doc) {
     return CarModel(
+        userId: doc['userId'],
         carId: doc.id,
         name: doc['name'],
         transmission: doc['transmission'],

@@ -72,22 +72,6 @@ class _CarUploadingViewState extends State<CarUploadingView> {
                                       fit: BoxFit.cover,
                                     )),
                               );
-                    // return Container(
-                    //   height: 70,
-                    //   width: 70,
-                    //
-                    //   decoration: BoxDecoration(
-                    //     shape: BoxShape.circle,
-                    //     border: Border.all(color: AppColors.primaryColor, width: 2),
-                    //     image: imageController.image.value != null
-                    //         ? DecorationImage(
-                    //             image: MemoryImage(imageController.imageWithoutBg.value!),
-                    //             fit: BoxFit.cover,
-                    //           )
-                    //         : null,
-                    //   ),
-                    //   child: imageController.image.value == null ? const Center(child: Icon(Icons.add_a_photo_outlined)) : null,
-                    // );
                   }),
                 ),
                 const SizedBox(height: 20),
@@ -215,7 +199,7 @@ class _CarUploadingViewState extends State<CarUploadingView> {
                     onPressed: () {
                       carController.uploadCar(
                         name: carController.carNameController.value.text,
-                        image: imageController.imageWithoutBg.value!!,
+                        image: imageController.imageWithoutBg.value!,
                         brand: carController.selectedCarBrand.value,
                         airConditioning: carController.selectedAirCondition.value,
                         transmission: carController.selectedTransmission.value,
