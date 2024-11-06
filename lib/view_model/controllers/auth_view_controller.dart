@@ -39,6 +39,7 @@ class AuthViewController extends GetxController {
         isLoading.value = true;
         await _authRepo.signUpUser(
           username: username,
+          image: "",
           email: email,
           password: password,
         );
@@ -81,5 +82,10 @@ class AuthViewController extends GetxController {
     } catch (e) {
       Utils.toastMessage(e.toString());
     }
+  }
+
+  Future<void> signOut() async {
+    await _authRepo.signOut();
+    Get.offNamed(RoutesName.loginView);
   }
 }

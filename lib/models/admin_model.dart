@@ -4,11 +4,13 @@ class AdminModel {
   final String userId;
   final String username;
   final String email;
+  final String image;
   final DateTime memberSince;
 
   const AdminModel({
     required this.userId,
     required this.username,
+    required this.image,
     required this.email,
     required this.memberSince,
   });
@@ -17,6 +19,7 @@ class AdminModel {
     return {
       'userId': userId,
       'username': username,
+      'image': image,
       'email': email,
       'memberSince': memberSince,
     };
@@ -26,6 +29,7 @@ class AdminModel {
     return AdminModel(
       userId: map['userId'] as String,
       username: map['username'] as String,
+      image: map['image'] as String,
       email: map['email'] as String,
       memberSince: (map['memberSince'] as Timestamp).toDate(),
     );

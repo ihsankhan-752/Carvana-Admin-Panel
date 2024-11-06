@@ -4,6 +4,8 @@ import 'package:carnava_admin_panel/view/navbar/home/home_view.dart';
 import 'package:carnava_admin_panel/view/navbar/members/members_view.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/settings_view.dart';
 import 'package:carnava_admin_panel/view/navbar/widgets/custom_tab_widget_navbar_view.dart';
+import 'package:carnava_admin_panel/view_model/controllers/auth_view_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +20,14 @@ class NavbarView extends StatefulWidget {
 
 class _NavbarViewState extends State<NavbarView> {
   int currentIndex = 0;
+  final AuthViewController authViewController = Get.put(AuthViewController());
+
+  @override
+  void initState() {
+    super.initState();
+    authViewController.fetchUserInformation(FirebaseAuth.instance.currentUser!.uid);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +98,7 @@ class _NavbarViewState extends State<NavbarView> {
           HomeView(),
           const BookingView(),
           MembersView(),
-          const SettingsView(),
+          SettingsView(),
         ],
       ),
     );

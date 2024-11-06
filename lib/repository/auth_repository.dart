@@ -17,12 +17,14 @@ class AuthRepository {
     }
   }
 
-  Future<void> signUpUser({required String username, required String email, required String password}) async {
+  Future<void> signUpUser(
+      {required String username, required String email, required String password, required String image}) async {
     User? user = await _authServices.signUpWithEmail(email, password);
     if (user != null) {
       AdminModel adminModel = AdminModel(
         userId: FirebaseAuth.instance.currentUser!.uid,
         username: username,
+        image: image,
         email: email,
         memberSince: DateTime.now(),
       );
