@@ -1,4 +1,4 @@
-import 'package:carnava_admin_panel/data/services/firestore_car_services.dart';
+import 'package:carnava_admin_panel/data/services/car/firestore_car_services.dart';
 import 'package:carnava_admin_panel/models/car_model.dart';
 
 class CarRepository {

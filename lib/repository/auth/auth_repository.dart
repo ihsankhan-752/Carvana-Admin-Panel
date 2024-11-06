@@ -1,9 +1,9 @@
 import 'package:carnava_admin_panel/data/app_exceptions.dart';
-import 'package:carnava_admin_panel/data/services/firebase_auth_services.dart';
+import 'package:carnava_admin_panel/data/services/auth/firebase_auth_services.dart';
 import 'package:carnava_admin_panel/models/admin_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../data/services/firestore_auth_services.dart';
+import '../../data/services/auth/firestore_auth_services.dart';
 
 class AuthRepository {
   final FirebaseAuthServices _authServices = FirebaseAuthServices();

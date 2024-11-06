@@ -1,4 +1,5 @@
 import 'package:carnava_admin_panel/models/admin_model.dart';
+import 'package:carnava_admin_panel/view/navbar/settings/edit_profile/edit_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -40,20 +41,25 @@ class AdminInformationWidget extends StatelessWidget {
           style: AppTextStyles.h1.copyWith(fontSize: 13, color: AppColors.primaryColor),
         ),
       ),
-      trailing: SizedBox(
-        width: 50,
-        child: Align(
-          alignment: Alignment.bottomRight,
-          child: Container(
-            margin: const EdgeInsets.only(bottom: 10),
-            height: 25,
-            width: 25,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              border: Border.all(color: AppColors.primaryColor, width: 2),
-            ),
-            child: const Center(
-              child: Icon(Icons.edit, size: 15, color: AppColors.primaryColor),
+      trailing: GestureDetector(
+        onTap: () {
+          Get.to(() => EditProfileView(adminModel: admin));
+        },
+        child: SizedBox(
+          width: 50,
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              height: 25,
+              width: 25,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: AppColors.primaryColor, width: 2),
+              ),
+              child: const Center(
+                child: Icon(Icons.edit, size: 15, color: AppColors.primaryColor),
+              ),
             ),
           ),
         ),

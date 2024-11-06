@@ -13,7 +13,7 @@ class CarSelectingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await imageController.pickImage();
+        await imageController.pickCarImage();
       },
       child: Obx(() {
         if (imageController.image.value == null) {

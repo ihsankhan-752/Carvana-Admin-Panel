@@ -48,6 +48,11 @@ class SettingsView extends StatelessWidget {
                 title: "Add About Us",
                 icon: Icons.account_box_outlined,
               ),
+              Divider(color: AppColors.primaryGrey.withOpacity(0.3), height: 0.1),
+              const ProfileListTileWidget(
+                title: "Change Password",
+                icon: Icons.lock_open,
+              ),
               const Spacer(),
               ProfileListTileWidget(
                 onPressed: () {

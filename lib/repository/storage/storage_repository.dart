@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import '../data/services/storage_services.dart';
+import '../../data/services/storage/storage_services.dart';
 
 class StorageRepository {
   StorageServices storageServices = StorageServices();
@@ -9,7 +9,7 @@ class StorageRepository {
     if (image == null) {
       return null;
     }
-    String? imageUrl = await storageServices.uploadImage(image);
+    String? imageUrl = await storageServices.uploadUintListImage(image);
     return imageUrl;
   }
 }

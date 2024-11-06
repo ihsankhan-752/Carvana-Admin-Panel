@@ -1,7 +1,7 @@
 import 'package:carnava_admin_panel/models/user_model.dart';
 import 'package:get/get.dart';
 
-import '../repository/members_repository.dart';
+import '../repository/members/members_repository.dart';
 
 class MemberViewController extends GetxController {
   final MembersRepository _userRepository = MembersRepository();

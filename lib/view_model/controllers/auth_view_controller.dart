@@ -1,5 +1,5 @@
 import 'package:carnava_admin_panel/models/admin_model.dart';
-import 'package:carnava_admin_panel/repository/auth_repository.dart';
+import 'package:carnava_admin_panel/repository/auth/auth_repository.dart';
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

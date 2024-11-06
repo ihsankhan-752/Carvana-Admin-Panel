@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -11,22 +11,32 @@ class ImageController extends GetxController {
   RxBool loading = false.obs;
   final ImagePicker _picker = ImagePicker();
   final String removeBgApiKey = "f2tih8DjzZQ6AM14vJ4mjHE4";
-  Future<void> pickImage() async {
+  Future<void> pickCarImage() async {
     try {
       final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
       if (pickedFile != null) {
         image.value = File(pickedFile.path);
         loading.value = true;
-
         imageWithoutBg.value = await removeBackground(image.value!);
 
         loading.value = false;
       } else {
-        print("No image was selected.");
+        if (kDebugMode) {
+          print("No image was selected.");
+        }
       }
     } catch (e) {
       loading.value = false;
-      print("Error picking image: $e");
+      if (kDebugMode) {
+        print("Error picking image: $e");
+      }
+    }
+  }
+
+  Future<void> pickImage(ImageSource source) async {
+    final pickedFile = await _picker.pickImage(source: source);
+    if (pickedFile != null) {
+      image.value = File(pickedFile.path);
     }
   }
 
@@ -44,11 +54,15 @@ class ImageController extends GetxController {
         http.Response imgRes = await http.Response.fromStream(response);
         return imgRes.bodyBytes;
       } else {
-        print("Background removal failed with status code: ${response.statusCode}");
+        if (kDebugMode) {
+          print("Background removal failed with status code: ${response.statusCode}");
+        }
         return null;
       }
     } catch (e) {
-      print("Error in background removal: $e");
+      if (kDebugMode) {
+        print("Error in background removal: $e");
+      }
       return null;
     }
   }

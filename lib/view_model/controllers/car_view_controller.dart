@@ -1,5 +1,5 @@
 import 'package:carnava_admin_panel/models/car_model.dart';
-import 'package:carnava_admin_panel/repository/car_repository.dart';
+import 'package:carnava_admin_panel/repository/car/car_repository.dart';
 import 'package:carnava_admin_panel/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../repository/storage_repository.dart';
+import '../../repository/storage/storage_repository.dart';
 
 class CarViewController extends GetxController {
   final CarRepository _carRepository = CarRepository();

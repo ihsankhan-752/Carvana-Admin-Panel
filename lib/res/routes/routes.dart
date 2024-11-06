@@ -41,6 +41,7 @@ class AppRoutes {
         page: () => const CarUploadingView(),
         transition: Transition.rightToLeftWithFade,
       ),
+
       // GetPage(
       //   name: RoutesName.firstOnboardingView,
       //   page: () => const FirstOnboardingView(),
