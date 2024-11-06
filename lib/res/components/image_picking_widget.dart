@@ -30,7 +30,6 @@ class ImageController extends GetxController {
     }
   }
 
-  // Function to remove the background using an API
   Future<Uint8List?> removeBackground(File imageFile) async {
     try {
       var request = http.MultipartRequest(
@@ -56,5 +55,9 @@ class ImageController extends GetxController {
 
   String? getImageUrl() {
     return image.value?.path;
+  }
+
+  void clearUploadImage() {
+    image.value = null;
   }
 }

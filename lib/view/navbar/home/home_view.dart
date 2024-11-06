@@ -1,4 +1,5 @@
 import 'package:carnava_admin_panel/models/car_model.dart';
+import 'package:carnava_admin_panel/utils/utils.dart';
 import 'package:carnava_admin_panel/view/navbar/home/widgets/car_card_widget.dart';
 import 'package:carnava_admin_panel/view_model/controllers/car_view_controller.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,7 +43,16 @@ class HomeView extends StatelessWidget {
                         itemCount: carList.length,
                         itemBuilder: (context, index) {
                           final car = carList[index];
-                          return CarCardWidget(car: car);
+                          return CarCardWidget(
+                            car: car,
+                            onEdit: () {},
+                            onDelete: () {
+                              Utils.alertDialog("Are you sure to delete this Car?", () {
+                                carViewController.deleteCar(car.carId);
+                                Get.back();
+                              });
+                            },
+                          );
                         },
                       );
                     },

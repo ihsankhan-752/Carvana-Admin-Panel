@@ -18,4 +18,8 @@ class FireStoreCarServices {
       return snapshot.docs.map((e) => CarModel.fromMap(e)).toList();
     });
   }
+
+  Future<void> deleteCar(String carId) async {
+    await carCollection.doc(carId).delete();
+  }
 }

@@ -49,29 +49,53 @@ class _CarUploadingViewState extends State<CarUploadingView> {
                     await imageController.pickImage();
                   },
                   child: Obx(() {
-                    return imageController.image.value == null
-                        ? Container(
-                            height: 70,
-                            width: 70,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: AppColors.primaryColor, width: 2),
+                    if (imageController.image.value == null) {
+                      return Container(
+                        height: 70,
+                        width: 70,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: AppColors.primaryColor, width: 2),
+                        ),
+                        child: const Center(child: Icon(Icons.add_a_photo_outlined)),
+                      );
+                    } else {
+                      if (imageController.loading.value) {
+                        return Center(
+                          child: Text(
+                            "Wait Bg Remove in progress",
+                            style: AppTextStyles.h1Bold.copyWith(
+                              fontSize: 16,
                             ),
-                            child: const Center(child: Icon(Icons.add_a_photo_outlined)),
-                          )
-                        : imageController.loading.value
-                            ? const Text("Wait Bg Remove in progress")
-                            : Container(
-                                height: 70,
-                                width: 70,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: AppColors.primaryColor, width: 2),
-                                    image: DecorationImage(
-                                      image: MemoryImage(imageController.imageWithoutBg.value!),
-                                      fit: BoxFit.cover,
-                                    )),
-                              );
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          height: Get.height * 0.3,
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.primaryColor, width: 1),
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                              image: MemoryImage(imageController.imageWithoutBg.value!),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: GestureDetector(
+                                onTap: () {
+                                  imageController.clearUploadImage();
+                                },
+                                child: const Icon(Icons.delete, color: AppColors.alertColor),
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                    }
                   }),
                 ),
                 const SizedBox(height: 20),

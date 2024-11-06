@@ -11,4 +11,8 @@ class CarRepository {
   Stream<List<CarModel>> getAllCars() {
     return _carServices.getAllCars();
   }
+
+  Future<void> deleteCar(String carId) async {
+    await _carServices.deleteCar(carId);
+  }
 }

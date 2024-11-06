@@ -90,4 +90,8 @@ class CarViewController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future<void> deleteCar(String carId) async {
+    await _carRepository.deleteCar(carId);
+  }
 }
