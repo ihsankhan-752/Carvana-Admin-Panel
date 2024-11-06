@@ -18,14 +18,15 @@ class FireStoreServices {
     }
   }
 
-  Future<AdminModel?> getUser(String userId) async {
+  Stream<AdminModel?> getUser(String userId) {
     try {
-      DocumentSnapshot snap = await adminCollection.doc(FirebaseAuth.instance.currentUser!.uid).get();
-      if (snap.exists) {
-        return AdminModel.fromMap(snap);
-      } else {
-        throw GeneralException("User Not Found");
-      }
+      return adminCollection.doc(userId).snapshots().map((snap) {
+        if (snap.exists) {
+          return AdminModel.fromMap(snap);
+        } else {
+          throw GeneralException("User Not Found");
+        }
+      });
     } on FirebaseException catch (e) {
       throw FirebaseDatabaseException("Database Error");
     } catch (e) {

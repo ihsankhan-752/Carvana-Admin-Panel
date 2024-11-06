@@ -11,7 +11,7 @@ class AuthRepository {
   Future<void> signInUser(String email, String password) async {
     User? user = await _authServices.signInWithEmail(email, password);
     if (user != null) {
-      await FireStoreServices().getUser(user.uid);
+      FireStoreServices().getUser(user.uid);
     } else {
       throw GeneralException('Error while fetching user');
     }
@@ -38,7 +38,7 @@ class AuthRepository {
     await _authServices.signOut();
   }
 
-  Future<AdminModel?> getUser(String userId) async {
-    return await FireStoreServices().getUser(userId);
+  Stream<AdminModel?> getUser(String userId) {
+    return FireStoreServices().getUser(userId);
   }
 }

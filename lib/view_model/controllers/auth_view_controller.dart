@@ -71,14 +71,15 @@ class AuthViewController extends GetxController {
     }
   }
 
-  Future<void> fetchUserInformation(String userId) async {
+  void fetchUserInformation(String userId) {
     try {
-      AdminModel? user = await _authRepo.getUser(userId);
-      if (user != null) {
-        adminModel.value = user;
-      } else {
-        Utils.toastMessage("User Not Fount");
-      }
+      _authRepo.getUser(userId).listen((AdminModel? user) {
+        if (user != null) {
+          adminModel.value = user;
+        } else {
+          Utils.toastMessage("Admin Not Found");
+        }
+      });
     } catch (e) {
       Utils.toastMessage(e.toString());
     }

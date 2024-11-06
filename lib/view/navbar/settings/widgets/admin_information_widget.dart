@@ -30,7 +30,10 @@ class AdminInformationWidget extends StatelessWidget {
               width: Get.width * 0.15,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(image: NetworkImage(admin.image)),
+                image: DecorationImage(
+                  image: NetworkImage(admin.image),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
       title: Text(admin.username, style: AppTextStyles.h1Bold.copyWith(fontWeight: FontWeight.w900, fontSize: 20)),
