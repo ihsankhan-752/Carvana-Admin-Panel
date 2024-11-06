@@ -3,6 +3,7 @@ import 'package:carnava_admin_panel/res/components/buttons/primary_button.dart';
 import 'package:carnava_admin_panel/res/text_styles/app_text_styles.dart';
 import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/car_name_text_input.dart';
 import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/car_pricing_text_input.dart';
+import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/car_selecting_widget.dart';
 import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/custom_dropdown_widget.dart';
 import 'package:carnava_admin_panel/view_model/controllers/car_view_controller.dart';
 import 'package:flutter/material.dart';
@@ -44,60 +45,7 @@ class _CarUploadingViewState extends State<CarUploadingView> {
                   style: AppTextStyles.h2.copyWith(fontSize: 14, color: AppColors.primaryGrey),
                 ),
                 const SizedBox(height: 5),
-                GestureDetector(
-                  onTap: () async {
-                    await imageController.pickImage();
-                  },
-                  child: Obx(() {
-                    if (imageController.image.value == null) {
-                      return Container(
-                        height: 70,
-                        width: 70,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: AppColors.primaryColor, width: 2),
-                        ),
-                        child: const Center(child: Icon(Icons.add_a_photo_outlined)),
-                      );
-                    } else {
-                      if (imageController.loading.value) {
-                        return Center(
-                          child: Text(
-                            "Wait Bg Remove in progress",
-                            style: AppTextStyles.h1Bold.copyWith(
-                              fontSize: 16,
-                            ),
-                          ),
-                        );
-                      } else {
-                        return Container(
-                          height: Get.height * 0.3,
-                          width: Get.width,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.primaryColor, width: 1),
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              image: MemoryImage(imageController.imageWithoutBg.value!),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: GestureDetector(
-                                onTap: () {
-                                  imageController.clearUploadImage();
-                                },
-                                child: const Icon(Icons.delete, color: AppColors.alertColor),
-                              ),
-                            ),
-                          ),
-                        );
-                      }
-                    }
-                  }),
-                ),
+                CarSelectingWidget(),
                 const SizedBox(height: 20),
                 CustomDropdown(
                   title: "Car Brand",
