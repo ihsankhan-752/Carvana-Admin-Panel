@@ -59,8 +59,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                         child: const Icon(Icons.camera_alt, size: 30)),
                   ),
                 )
-              },
-              if (imageController.image.value != null) ...{
+              } else if (imageController.image.value != null && widget.adminModel.image.isNotEmpty) ...{
                 Center(
                   child: CircleAvatar(
                     radius: 40,
@@ -68,13 +67,17 @@ class _EditProfileViewState extends State<EditProfileView> {
                     backgroundImage: FileImage(File(imageController.image.value!.path)),
                   ),
                 )
-              },
-              if (widget.adminModel.image.isNotEmpty) ...{
+              } else ...{
                 Center(
                   child: CircleAvatar(
                     radius: 40,
                     backgroundColor: AppColors.primaryColor.withOpacity(0.3),
                     backgroundImage: NetworkImage(widget.adminModel.image),
+                    child: GestureDetector(
+                        onTap: () {
+                          imageController.pickImage(ImageSource.gallery);
+                        },
+                        child: const Icon(Icons.camera_alt, color: AppColors.primaryWhite)),
                   ),
                 )
               },
