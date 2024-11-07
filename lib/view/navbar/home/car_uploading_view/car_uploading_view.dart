@@ -1,15 +1,15 @@
 import 'package:carnava_admin_panel/res/colors/app_colors.dart';
 import 'package:carnava_admin_panel/res/components/buttons/primary_button.dart';
 import 'package:carnava_admin_panel/res/text_styles/app_text_styles.dart';
-import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/car_name_text_input.dart';
-import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/car_pricing_text_input.dart';
-import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/car_selecting_widget.dart';
-import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/custom_dropdown_widget.dart';
+import 'package:carnava_admin_panel/view/navbar/home/car_uploading_view/widgets/car_name_text_input.dart';
+import 'package:carnava_admin_panel/view/navbar/home/car_uploading_view/widgets/car_pricing_text_input.dart';
+import 'package:carnava_admin_panel/view/navbar/home/car_uploading_view/widgets/car_selecting_widget.dart';
+import 'package:carnava_admin_panel/view/navbar/home/car_uploading_view/widgets/custom_dropdown_widget.dart';
 import 'package:carnava_admin_panel/view_model/controllers/car/car_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../res/components/image_picking_widget.dart';
+import '../../../../res/components/image_picking_widget.dart';
 
 class CarUploadingView extends StatefulWidget {
   const CarUploadingView({super.key});

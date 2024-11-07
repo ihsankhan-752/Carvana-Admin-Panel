@@ -2,12 +2,12 @@ import 'package:carnava_admin_panel/view/navbar/home/widgets/car_image_widget_in
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../models/car_model.dart';
-import '../../../res/colors/app_colors.dart';
-import '../../../res/components/buttons/primary_button.dart';
-import '../../../res/components/image_picking_widget.dart';
-import '../../../res/text_styles/app_text_styles.dart';
-import '../../../view_model/controllers/car/car_view_controller.dart';
+import '../../../../models/car_model.dart';
+import '../../../../res/colors/app_colors.dart';
+import '../../../../res/components/buttons/primary_button.dart';
+import '../../../../res/components/image_picking_widget.dart';
+import '../../../../res/text_styles/app_text_styles.dart';
+import '../../../../view_model/controllers/car/car_view_controller.dart';
 import '../car_uploading_view/widgets/car_name_text_input.dart';
 import '../car_uploading_view/widgets/car_pricing_text_input.dart';
 import '../car_uploading_view/widgets/custom_dropdown_widget.dart';
@@ -59,6 +59,7 @@ class _EditCarViewState extends State<EditCarView> {
                 options: carController.carBrands,
                 onChanged: (value) {
                   carController.selectedCarBrand.value = value!;
+                  setState(() {});
                 },
               ),
 
@@ -84,6 +85,7 @@ class _EditCarViewState extends State<EditCarView> {
                 options: carController.airConditionOptions,
                 onChanged: (value) {
                   carController.selectedAirCondition.value = value!;
+                  setState(() {});
                 },
               ),
 
@@ -98,6 +100,7 @@ class _EditCarViewState extends State<EditCarView> {
                       options: carController.transmissionOptions,
                       onChanged: (value) {
                         carController.selectedTransmission.value = value!;
+                        setState(() {});
                       },
                     ),
                   ),
@@ -109,6 +112,7 @@ class _EditCarViewState extends State<EditCarView> {
                       options: carController.fuelTypeOptions,
                       onChanged: (value) {
                         carController.selectedFuelType.value = value!;
+                        setState(() {});
                       },
                     ),
                   )
@@ -126,6 +130,7 @@ class _EditCarViewState extends State<EditCarView> {
                       options: carController.doorsOptions.map((door) => door.toString()).toList(),
                       onChanged: (value) {
                         carController.selectedDoors.value = int.parse(value!);
+                        setState(() {});
                       },
                     ),
                   ),
@@ -137,6 +142,7 @@ class _EditCarViewState extends State<EditCarView> {
                       options: carController.seatsOptions.map((seat) => seat.toString()).toList(),
                       onChanged: (value) {
                         carController.selectedSeats.value = int.parse(value!);
+                        setState(() {});
                       },
                     ),
                   ),

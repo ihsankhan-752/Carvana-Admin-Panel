@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../res/colors/app_colors.dart';
-import '../../../../res/components/image_picking_widget.dart';
-import '../../../../res/text_styles/app_text_styles.dart';
+import '../../../../../res/colors/app_colors.dart';
+import '../../../../../res/components/image_picking_widget.dart';
+import '../../../../../res/text_styles/app_text_styles.dart';
 
 class CarSelectingWidget extends StatelessWidget {
   CarSelectingWidget({super.key});

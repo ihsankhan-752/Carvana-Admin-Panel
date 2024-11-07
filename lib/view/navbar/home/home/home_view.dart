@@ -1,6 +1,6 @@
 import 'package:carnava_admin_panel/models/car_model.dart';
 import 'package:carnava_admin_panel/utils/utils.dart';
-import 'package:carnava_admin_panel/view/navbar/home/edit_car_view.dart';
+import 'package:carnava_admin_panel/view/navbar/home/car_edit/edit_car_view.dart';
 import 'package:carnava_admin_panel/view/navbar/home/widgets/car_card_widget.dart';
 import 'package:carnava_admin_panel/view_model/controllers/car/car_view_controller.dart';
 import 'package:flutter/cupertino.dart';
