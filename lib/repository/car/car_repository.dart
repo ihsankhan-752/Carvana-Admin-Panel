@@ -15,4 +15,8 @@ class CarRepository {
   Future<void> deleteCar(String carId) async {
     await _carServices.deleteCar(carId);
   }
+
+  Future<void> updateCar(String carId, Map<String, dynamic> data) async {
+    await _carServices.updateCar(carId, data);
+  }
 }

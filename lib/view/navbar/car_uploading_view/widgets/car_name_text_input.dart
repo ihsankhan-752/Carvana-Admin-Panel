@@ -5,7 +5,8 @@ import '../../../../res/text_styles/app_text_styles.dart';
 
 class CarNameTextInput extends StatelessWidget {
   final TextEditingController controller;
-  const CarNameTextInput({super.key, required this.controller});
+  final String? hintText;
+  const CarNameTextInput({super.key, required this.controller, this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class CarNameTextInput extends StatelessWidget {
           decoration: InputDecoration(
             fillColor: AppColors.primaryGrey.withOpacity(0.1),
             filled: true,
-            hintText: "S2 Sedan",
+            hintText: hintText ?? "S2 Sedan",
             border: InputBorder.none,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),

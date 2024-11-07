@@ -22,4 +22,12 @@ class FireStoreCarServices {
   Future<void> deleteCar(String carId) async {
     await carCollection.doc(carId).delete();
   }
+
+  Future<void> updateCar(String carId, Map<String, dynamic> data) async {
+    try {
+      await carCollection.doc(carId).update(data);
+    } catch (e) {
+      throw GeneralException(e.toString());
+    }
+  }
 }

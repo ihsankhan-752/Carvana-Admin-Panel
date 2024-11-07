@@ -3,7 +3,7 @@ import 'package:carnava_admin_panel/view/auth/widgets/auth_footer_widget.dart';
 import 'package:carnava_admin_panel/view/auth/widgets/email_input_widget.dart';
 import 'package:carnava_admin_panel/view/auth/widgets/forgot_password_widget.dart';
 import 'package:carnava_admin_panel/view/auth/widgets/password_input_widget.dart';
-import 'package:carnava_admin_panel/view_model/controllers/auth_view_controller.dart';
+import 'package:carnava_admin_panel/view_model/controllers/auth/auth_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,4 +1,4 @@
-import 'package:carnava_admin_panel/view_model/controllers/auth_view_controller.dart';
+import 'package:carnava_admin_panel/view_model/controllers/auth/auth_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

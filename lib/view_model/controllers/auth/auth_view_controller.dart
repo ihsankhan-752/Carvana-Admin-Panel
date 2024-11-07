@@ -4,7 +4,7 @@ import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../utils/utils.dart';
+import '../../../utils/utils.dart';
 
 class AuthViewController extends GetxController {
   final _authRepo = AuthRepository();

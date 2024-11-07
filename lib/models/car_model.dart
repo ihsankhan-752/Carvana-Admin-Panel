@@ -1,21 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CarModel {
-  final String userId;
-  final String carId;
-  final String name;
-  final String transmission;
-  final String airConditioning;
-  final String fuelType;
-  final int doors;
-  final int seats;
-  final String imageUrl;
-  final double pricePerHour;
+  String userId;
+  String carId;
+  String name;
+  String brand;
+  String transmission;
+  String airConditioning;
+  String fuelType;
+  int doors;
+  int seats;
+  String imageUrl;
+  double pricePerHour;
 
   CarModel({
     required this.userId,
     required this.carId,
     required this.name,
+    required this.brand,
     required this.transmission,
     required this.airConditioning,
     required this.fuelType,
@@ -30,6 +32,7 @@ class CarModel {
       'userId': userId,
       'carId': carId,
       'name': name,
+      'brand': brand,
       'transmission': transmission,
       'airConditioning': airConditioning,
       'fuelType': fuelType,
@@ -45,6 +48,7 @@ class CarModel {
         userId: doc['userId'],
         carId: doc.id,
         name: doc['name'],
+        brand: doc['brand'],
         transmission: doc['transmission'],
         airConditioning: doc['airConditioning'],
         fuelType: doc['fuelType'],

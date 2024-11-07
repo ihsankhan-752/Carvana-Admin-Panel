@@ -5,7 +5,7 @@ import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/car_n
 import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/car_pricing_text_input.dart';
 import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/car_selecting_widget.dart';
 import 'package:carnava_admin_panel/view/navbar/car_uploading_view/widgets/custom_dropdown_widget.dart';
-import 'package:carnava_admin_panel/view_model/controllers/car_view_controller.dart';
+import 'package:carnava_admin_panel/view_model/controllers/car/car_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -3,7 +3,7 @@ import 'package:carnava_admin_panel/res/colors/app_colors.dart';
 import 'package:carnava_admin_panel/utils/utils.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/widgets/admin_information_widget.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/widgets/profile_list_tile_widget.dart';
-import 'package:carnava_admin_panel/view_model/controllers/auth_view_controller.dart';
+import 'package:carnava_admin_panel/view_model/controllers/auth/auth_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

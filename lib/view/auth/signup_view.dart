@@ -3,7 +3,7 @@ import 'package:carnava_admin_panel/view/auth/widgets/auth_footer_widget.dart';
 import 'package:carnava_admin_panel/view/auth/widgets/email_input_widget.dart';
 import 'package:carnava_admin_panel/view/auth/widgets/password_input_widget.dart';
 import 'package:carnava_admin_panel/view/auth/widgets/username_input_widget.dart';
-import 'package:carnava_admin_panel/view_model/controllers/auth_view_controller.dart';
+import 'package:carnava_admin_panel/view_model/controllers/auth/auth_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,27 +37,26 @@ class SignUpView extends StatelessWidget {
               SizedBox(height: Get.height * 0.02),
               PasswordInputWidget(controller: authController.passwordController.value),
               SizedBox(height: Get.height * 0.04),
-              Obx((){
-                return  authController.isLoading.value
+              Obx(() {
+                return authController.isLoading.value
                     ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+                        child: CircularProgressIndicator(),
+                      )
                     : PrimaryButton(
-                  onPressed: () {
-                    authController
-                        .signUpUser(
-                      username: authController.usernameController.value.text,
-                      email: authController.emailController.value.text,
-                      password: authController.passwordController.value.text,
-                    )
-                        .whenComplete(() {
-                      authController.clearTextInputs();
-                    });
-                  },
-                  title: "Sign Up",
-                );
+                        onPressed: () {
+                          authController
+                              .signUpUser(
+                            username: authController.usernameController.value.text,
+                            email: authController.emailController.value.text,
+                            password: authController.passwordController.value.text,
+                          )
+                              .whenComplete(() {
+                            authController.clearTextInputs();
+                          });
+                        },
+                        title: "Sign Up",
+                      );
               }),
-
               SizedBox(height: Get.height * 0.045),
               GestureDetector(
                 onTap: () {
