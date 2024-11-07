@@ -41,4 +41,13 @@ class AuthRepository {
   Stream<AdminModel?> getUser(String userId) {
     return FireStoreServices().getUser(userId);
   }
+
+  Future<bool> checkOldPassword(String email, String password) async {
+    await _authServices.checkOldPassword(email, password);
+    return true;
+  }
+
+  Future<void> changeUserPassword(String newPassword) async {
+    await _authServices.changeUserPassword(newPassword);
+  }
 }

@@ -9,4 +9,5 @@ class RoutesName {
   static const String bookingView = '/bookingView';
   static const String checkOutView = '/checkOutView';
   static const String editProfileView = '/editProfileView';
+  static const String changePasswordView = '/changePasswordView';
 }

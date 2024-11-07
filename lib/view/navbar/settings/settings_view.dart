@@ -1,5 +1,6 @@
 import 'package:carnava_admin_panel/models/admin_model.dart';
 import 'package:carnava_admin_panel/res/colors/app_colors.dart';
+import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:carnava_admin_panel/utils/utils.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/widgets/admin_information_widget.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/widgets/profile_list_tile_widget.dart';
@@ -49,7 +50,10 @@ class SettingsView extends StatelessWidget {
                 icon: Icons.account_box_outlined,
               ),
               Divider(color: AppColors.primaryGrey.withOpacity(0.3), height: 0.1),
-              const ProfileListTileWidget(
+              ProfileListTileWidget(
+                onPressed: () {
+                  Get.toNamed(RoutesName.changePasswordView);
+                },
                 title: "Change Password",
                 icon: Icons.lock_open,
               ),

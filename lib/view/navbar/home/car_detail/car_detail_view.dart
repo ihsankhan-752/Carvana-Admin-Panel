@@ -20,34 +20,36 @@ class CarDetailView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Column(
-          children: [
-            SizedBox(
-              height: Get.height * 0.3,
-              width: Get.width,
-              child: Image.network(carModel.imageUrl),
-            ),
-            const Divider(),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                FeatureWidget(icon: AppIcons.transmissionIcon, title: "Transmission", dbValue: carModel.transmission),
-                FeatureWidget(icon: AppIcons.fuelIcon, title: "Fuel Type", dbValue: carModel.fuelType),
-              ],
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                FeatureWidget(
-                    icon: AppIcons.seatIcon,
-                    title: "Doors And Seats",
-                    dbValue: "${carModel.doors} Doors & ${carModel.seats} Seats"),
-                FeatureWidget(icon: AppIcons.acIcon, title: "Air Condition", dbValue: carModel.airConditioning),
-              ],
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: Get.height * 0.3,
+                width: Get.width,
+                child: Image.network(carModel.imageUrl),
+              ),
+              const Divider(),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FeatureWidget(icon: AppIcons.transmissionIcon, title: "Transmission", dbValue: carModel.transmission),
+                  FeatureWidget(icon: AppIcons.fuelIcon, title: "Fuel Type", dbValue: carModel.fuelType),
+                ],
+              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FeatureWidget(
+                      icon: AppIcons.seatIcon,
+                      title: "Doors And Seats",
+                      dbValue: "${carModel.doors} Doors & ${carModel.seats} Seats"),
+                  FeatureWidget(icon: AppIcons.acIcon, title: "Air Condition", dbValue: carModel.airConditioning),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:carnava_admin_panel/data/app_exceptions.dart';
 import 'package:carnava_admin_panel/models/admin_model.dart';
 import 'package:carnava_admin_panel/repository/auth/auth_repository.dart';
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
@@ -88,5 +89,23 @@ class AuthViewController extends GetxController {
   Future<void> signOut() async {
     await _authRepo.signOut();
     Get.offNamed(RoutesName.loginView);
+  }
+
+  Future<void> changePassword({required String email, required String password, required String newPassword}) async {
+    try {
+      isLoading.value = true;
+      bool checkPassword = await _authRepo.checkOldPassword(email, password);
+      if (checkPassword) {
+        await _authRepo.changeUserPassword(newPassword);
+        Utils.toastMessage("Password Updated");
+        Get.back();
+      } else {
+        Utils.toastMessage("Invalid Password");
+      }
+    } catch (e) {
+      throw GeneralException(e.toString());
+    } finally {
+      isLoading.value = false;
+    }
   }
 }

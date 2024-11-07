@@ -1,5 +1,6 @@
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:carnava_admin_panel/view/navbar/navbar_view.dart';
+import 'package:carnava_admin_panel/view/navbar/settings/change_password/change_password_view.dart';
 import 'package:get/get.dart';
 
 import '../../view/auth/forgot_password_view.dart';
@@ -39,6 +40,11 @@ class AppRoutes {
       GetPage(
         name: RoutesName.carUploadingView,
         page: () => const CarUploadingView(),
+        transition: Transition.rightToLeftWithFade,
+      ),
+      GetPage(
+        name: RoutesName.changePasswordView,
+        page: () => const ChangePasswordView(),
         transition: Transition.rightToLeftWithFade,
       ),
     ];
