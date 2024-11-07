@@ -8,9 +8,9 @@ class TermsAndConditionTextInputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: TextEditingController(),
-      maxLines: 5,
-      maxLength: 150,
+      controller: controller,
+      maxLines: 7,
+      maxLength: 250,
       decoration: InputDecoration(
         hintText: "Terms & Conditions",
         border: InputBorder.none,

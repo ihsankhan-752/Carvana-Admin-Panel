@@ -50,7 +50,7 @@ class AppRoutes {
       ),
       GetPage(
         name: RoutesName.termsAndConditionView,
-        page: () => const TermsAndConditionsView(),
+        page: () => TermsAndConditionsView(),
       ),
     ];
   }
