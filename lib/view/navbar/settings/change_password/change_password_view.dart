@@ -1,7 +1,11 @@
 import 'package:carnava_admin_panel/res/colors/app_colors.dart';
+import 'package:carnava_admin_panel/res/components/buttons/primary_button.dart';
 import 'package:carnava_admin_panel/res/text_styles/app_text_styles.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/change_password/widgets/change_password_text_input_widget.dart';
+import 'package:carnava_admin_panel/view_model/controllers/auth/auth_view_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChangePasswordView extends StatefulWidget {
   const ChangePasswordView({super.key});
@@ -11,8 +15,8 @@ class ChangePasswordView extends StatefulWidget {
 }
 
 class _ChangePasswordViewState extends State<ChangePasswordView> {
-  final TextEditingController _oldPassController = TextEditingController();
-  final TextEditingController _newPassController = TextEditingController();
+  final AuthViewController authController = Get.put(AuthViewController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,49 +26,54 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
         title: Text("Change Password", style: AppTextStyles.h1Bold),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Column(
-          children: [
-            const Center(child: Icon(Icons.lock, size: 80, color: AppColors.primaryColor)),
-            Text("Old Password"),
-            ChangePasswordTextInputWidget(
-              controller: _oldPassController,
-              validator: (v) {
-                if (v!.isEmpty) {
-                  return "Enter Old Password";
-                } else {
-                  return null;
-                }
-              },
-              hintText: "Enter your old password",
-              errorText: "",
-            ),
-            ChangePasswordTextInputWidget(
-              controller: _newPassController,
-              validator: (v) {
-                if (v!.isEmpty) {
-                  return "New Password Must Be Filled";
-                } else {
-                  return null;
-                }
-              },
-              hintText: "Enter new password",
-            ),
-            ChangePasswordTextInputWidget(
-              controller: TextEditingController(),
-              validator: (v) {
-                if (v != _newPassController.text) {
-                  return "Password Not Matching";
-                } else if (v!.isEmpty) {
-                  return "Re-Enter New Password";
-                } else {
-                  return null;
-                }
-              },
-              hintText: "Re-Enter new password",
-            ),
-            SizedBox(height: 30),
-          ],
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Center(child: Icon(Icons.lock, size: 100, color: AppColors.primaryColor)),
+              const SizedBox(height: 20),
+              const Text("Old Password"),
+              ChangePasswordTextInputWidget(
+                controller: authController.oldPassController.value,
+                hintText: "Enter Old Password",
+              ),
+              const SizedBox(height: 20),
+              const Text("New Password"),
+              ChangePasswordTextInputWidget(
+                controller: authController.newPassController.value,
+                hintText: "Enter new password",
+              ),
+              const SizedBox(height: 20),
+              const Text("New Password"),
+              ChangePasswordTextInputWidget(
+                controller: authController.confirmNewPassword.value,
+                hintText: "Re-Enter new password",
+              ),
+              const SizedBox(height: 30),
+              Obx(() {
+                return authController.isLoading.value
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : PrimaryButton(
+                        onPressed: () {
+                          authController
+                              .changePassword(
+                            email: FirebaseAuth.instance.currentUser!.email!,
+                            password: authController.oldPassController.value.text,
+                            newPassword: authController.newPassController.value.text,
+                            confirmNewPassword: authController.confirmNewPassword.value.text,
+                          )
+                              .whenComplete(() {
+                            authController.clearTextInputs();
+                          });
+                        },
+                        title: "Change Password",
+                      );
+              })
+            ],
+          ),
         ),
       ),
     );

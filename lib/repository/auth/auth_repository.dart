@@ -43,8 +43,7 @@ class AuthRepository {
   }
 
   Future<bool> checkOldPassword(String email, String password) async {
-    await _authServices.checkOldPassword(email, password);
-    return true;
+    return await _authServices.checkOldPassword(email, password);
   }
 
   Future<void> changeUserPassword(String newPassword) async {

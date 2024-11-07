@@ -1,7 +1,7 @@
-import 'package:carnava_admin_panel/data/app_exceptions.dart';
 import 'package:carnava_admin_panel/models/admin_model.dart';
 import 'package:carnava_admin_panel/repository/auth/auth_repository.dart';
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +13,10 @@ class AuthViewController extends GetxController {
   final emailController = TextEditingController().obs;
   final passwordController = TextEditingController().obs;
   final usernameController = TextEditingController().obs;
+
+  final oldPassController = TextEditingController().obs;
+  final newPassController = TextEditingController().obs;
+  final confirmNewPassword = TextEditingController().obs;
 
   RxBool isPassVisible = true.obs;
   RxBool isLoading = false.obs;
@@ -26,6 +30,9 @@ class AuthViewController extends GetxController {
     emailController.value.clear();
     usernameController.value.clear();
     passwordController.value.clear();
+    oldPassController.value.clear();
+    newPassController.value.clear();
+    confirmNewPassword.value.clear();
   }
 
   Future<void> signUpUser({required String username, required String email, required String password}) async {
@@ -65,6 +72,7 @@ class AuthViewController extends GetxController {
 
         Get.toNamed(RoutesName.navbarView);
       } catch (e) {
+        Utils.centerToastMessage(e.toString());
         isLoading.value = false;
       } finally {
         isLoading.value = false;
@@ -91,19 +99,42 @@ class AuthViewController extends GetxController {
     Get.offNamed(RoutesName.loginView);
   }
 
-  Future<void> changePassword({required String email, required String password, required String newPassword}) async {
+  Future<void> changePassword({
+    required String email,
+    required String password,
+    required String newPassword,
+    required String confirmNewPassword,
+  }) async {
+    if (password.isEmpty) {
+      Utils.centerToastMessage("Old Password required");
+      return;
+    } else if (newPassword.isEmpty) {
+      Utils.centerToastMessage("New Password required");
+      return;
+    } else if (confirmNewPassword != newPassword) {
+      Utils.centerToastMessage("Passwords do not match");
+      return;
+    }
+
+    isLoading.value = true;
     try {
-      isLoading.value = true;
+      print("Attempting re-authentication...");
       bool checkPassword = await _authRepo.checkOldPassword(email, password);
+
       if (checkPassword) {
+        print("Re-authentication successful, updating password...");
         await _authRepo.changeUserPassword(newPassword);
-        Utils.toastMessage("Password Updated");
+        Utils.toastMessage("Password updated successfully");
         Get.back();
       } else {
-        Utils.toastMessage("Invalid Password");
+        Utils.toastMessage("Invalid password");
       }
+    } on FirebaseAuthException catch (e) {
+      print("Firebase Auth Error: ${e.code} - ${e.message}");
+      Utils.toastMessage("Authentication error: ${e.message}");
     } catch (e) {
-      throw GeneralException(e.toString());
+      print("General Error during password change: $e");
+      Utils.toastMessage("An unknown error occurred");
     } finally {
       isLoading.value = false;
     }

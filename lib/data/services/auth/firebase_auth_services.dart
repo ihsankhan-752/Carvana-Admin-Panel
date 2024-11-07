@@ -47,22 +47,28 @@ class FirebaseAuthServices {
     await _auth.signOut();
   }
 
-  Future<bool> checkOldPassword(email, password) async {
-    AuthCredential authCredential = EmailAuthProvider.credential(email: email, password: password);
+  Future<bool> checkOldPassword(String email, String password) async {
     try {
+      AuthCredential authCredential = EmailAuthProvider.credential(email: email, password: password);
       var credentialResult = await FirebaseAuth.instance.currentUser!.reauthenticateWithCredential(authCredential);
       return credentialResult.user != null;
+    } on FirebaseAuthException catch (e) {
+      print("Firebase Auth Error during re-authentication: ${e.code} - ${e.message}");
+      return false;
     } catch (e) {
-      print(e);
+      print("Error during re-authentication: $e");
       return false;
     }
   }
 
-  Future<void> changeUserPassword(newPassword) async {
+  Future<void> changeUserPassword(String newPassword) async {
     try {
       await FirebaseAuth.instance.currentUser!.updatePassword(newPassword);
+      print("Password updated successfully");
+    } on FirebaseAuthException catch (e) {
+      print("Error updating password: ${e.code} - ${e.message}");
     } catch (e) {
-      print(e);
+      print("General error during password update: $e");
     }
   }
 }
