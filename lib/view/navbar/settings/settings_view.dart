@@ -35,7 +35,10 @@ class SettingsView extends StatelessWidget {
                 icon: Icons.person,
               ),
               Divider(color: AppColors.primaryGrey.withOpacity(0.3), height: 0.1),
-              const ProfileListTileWidget(
+              ProfileListTileWidget(
+                onPressed: () {
+                  Get.toNamed(RoutesName.termsAndConditionView);
+                },
                 title: "Add Terms & Conditions",
                 icon: Icons.note_alt_outlined,
               ),
