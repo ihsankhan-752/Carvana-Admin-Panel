@@ -1,4 +1,5 @@
 import 'package:carnava_admin_panel/view/navbar/home/car_detail/car_detail_view.dart';
+import 'package:carnava_admin_panel/view/navbar/home/widgets/car_shimmer_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -67,11 +68,7 @@ class CarCardWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: Get.height * 0.25,
-                width: Get.width,
-                child: Image.network(car.imageUrl, fit: BoxFit.cover),
-              ),
+              CarShimmerLoadingWidget(imageUrl: car.imageUrl),
               const Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

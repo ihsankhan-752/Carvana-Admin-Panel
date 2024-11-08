@@ -3,6 +3,7 @@ import 'package:carnava_admin_panel/res/assets/app_icons.dart';
 import 'package:carnava_admin_panel/res/colors/app_colors.dart';
 import 'package:carnava_admin_panel/res/text_styles/app_text_styles.dart';
 import 'package:carnava_admin_panel/view/navbar/home/car_detail/widgets/feature_widget.dart';
+import 'package:carnava_admin_panel/view/navbar/home/widgets/car_shimmer_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,10 +24,9 @@ class CarDetailView extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
+              CarShimmerLoadingWidget(
                 height: Get.height * 0.3,
-                width: Get.width,
-                child: Image.network(carModel.imageUrl),
+                imageUrl: carModel.imageUrl,
               ),
               const Divider(),
               const SizedBox(height: 20),

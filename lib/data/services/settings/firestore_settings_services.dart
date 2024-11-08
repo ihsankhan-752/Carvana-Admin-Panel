@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FireStoreSettingsServices {
   final CollectionReference termsAndConditionCollection = FirebaseFirestore.instance.collection('termsAndConditions');
   final CollectionReference aboutUsCollection = FirebaseFirestore.instance.collection('aboutUs');
-  final CollectionReference contactUsCollection = FirebaseFirestore.instance.collection('contactUsCollection');
+  final CollectionReference contactUsCollection = FirebaseFirestore.instance.collection('contactUs');
 
   Future<void> addTermsAndConditions(String termsAndConditions) async {
     try {
