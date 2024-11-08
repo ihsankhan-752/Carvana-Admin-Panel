@@ -7,9 +7,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeView extends StatelessWidget {
-  HomeView({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   final carViewController = Get.put(CarViewController());
+  final searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +25,14 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Column(
           children: [
-            const SizedBox(
+            SizedBox(
               height: 50,
-              child: CupertinoSearchTextField(),
+              child: CupertinoSearchTextField(
+                controller: searchController,
+                onChanged: (v) {
+                  setState(() {});
+                },
+              ),
             ),
             Expanded(
               child: Obx(
@@ -44,18 +56,24 @@ class HomeView extends StatelessWidget {
                         itemCount: carList.length,
                         itemBuilder: (context, index) {
                           final car = carList[index];
-                          return CarCardWidget(
-                            car: car,
-                            onEdit: () {
-                              Get.to(() => EditCarView(carModel: car));
-                            },
-                            onDelete: () {
-                              Utils.alertDialog("Are you sure to delete this Car?", () {
-                                carViewController.deleteCar(car.carId);
-                                Get.back();
-                              });
-                            },
-                          );
+
+                          if (searchController.text.isEmpty ||
+                              car.name.toLowerCase().contains(searchController.text.toLowerCase())) {
+                            return CarCardWidget(
+                              car: car,
+                              onEdit: () {
+                                Get.to(() => EditCarView(carModel: car));
+                              },
+                              onDelete: () {
+                                Utils.alertDialog("Are you sure to delete this Car?", () {
+                                  carViewController.deleteCar(car.carId);
+                                  Get.back();
+                                });
+                              },
+                            );
+                          } else {
+                            return const SizedBox();
+                          }
                         },
                       );
                     },
