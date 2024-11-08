@@ -1,5 +1,6 @@
 import 'package:carnava_admin_panel/res/colors/app_colors.dart';
 import 'package:carnava_admin_panel/res/components/buttons/primary_button.dart';
+import 'package:carnava_admin_panel/res/components/loading_indicator_widget.dart';
 import 'package:carnava_admin_panel/res/text_styles/app_text_styles.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/contact_us/widgets/input_widget_for_contact_view.dart';
 import 'package:carnava_admin_panel/view_model/controllers/settings/setting_view_controller.dart';
@@ -59,13 +60,7 @@ class ContactUsView extends StatelessWidget {
         child: Obx(
           () {
             return controller.isLoading.value
-                ? SizedBox(
-                    height: 60,
-                    width: Get.width,
-                    child: const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  )
+                ? const LoadingIndicatorWidget()
                 : PrimaryButton(
                     title: "Save",
                     onPressed: () {
