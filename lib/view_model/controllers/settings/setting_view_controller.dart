@@ -1,3 +1,4 @@
+import 'package:carnava_admin_panel/models/contact_us_model.dart';
 import 'package:carnava_admin_panel/repository/settings/settings_repository.dart';
 import 'package:carnava_admin_panel/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,12 +15,41 @@ class SettingViewController extends GetxController {
     } else {
       try {
         isLoading.value = true;
-        settingsRepository.addTermsAndConditions(termsAndCondition).whenComplete(() {
+        await settingsRepository.addTermsAndConditions(termsAndCondition).whenComplete(() {
           isLoading.value = false;
 
           Utils.toastMessage("Terms And Conditions Added");
           Get.back();
         });
+      } catch (e) {
+        isLoading.value = false;
+        Utils.centerToastMessage(e.toString());
+      }
+    }
+  }
+
+  Future<void> addContactUs({
+    required String email,
+    int? phone,
+    int? whatsApp,
+    required String website,
+  }) async {
+    if (email.isEmpty || phone == null || whatsApp == null || website.isEmpty) {
+      Utils.centerToastMessage("All Fields are required");
+    } else {
+      try {
+        isLoading.value = true;
+
+        ContactUsModel contactUsModel = ContactUsModel(
+          email: email,
+          phoneNumber: phone,
+          whatsApp: whatsApp,
+          website: website,
+        );
+        await settingsRepository.addContactUs(contactUsModel);
+        isLoading.value = false;
+        Utils.toastMessage("Contact us added");
+        Get.back();
       } catch (e) {
         isLoading.value = false;
         Utils.centerToastMessage(e.toString());
