@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FireStoreSettingsServices {
   final CollectionReference termsAndConditionCollection = FirebaseFirestore.instance.collection('termsAndConditions');
+  final CollectionReference aboutUsCollection = FirebaseFirestore.instance.collection('aboutUs');
   final CollectionReference contactUsCollection = FirebaseFirestore.instance.collection('contactUsCollection');
 
   Future<void> addTermsAndConditions(String termsAndConditions) async {
@@ -20,6 +21,17 @@ class FireStoreSettingsServices {
   Future<void> addContactUs(ContactUsModel model) async {
     try {
       await contactUsCollection.doc("1").set(model.toMap());
+    } catch (e) {
+      throw GeneralException(e.toString());
+    }
+  }
+
+  Future<void> addAboutUs(String aboutUs) async {
+    try {
+      await aboutUsCollection.doc("1").set({
+        'aboutUs': aboutUs,
+        'addedDate': DateTime.now(),
+      });
     } catch (e) {
       throw GeneralException(e.toString());
     }

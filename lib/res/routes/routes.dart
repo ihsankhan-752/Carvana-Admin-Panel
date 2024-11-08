@@ -1,5 +1,6 @@
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:carnava_admin_panel/view/navbar/navbar_view.dart';
+import 'package:carnava_admin_panel/view/navbar/settings/about_us/about_us_view.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/change_password/change_password_view.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/contact_us/contact_us_view.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/terms_and_conditions/terms_and_conditions_view.dart';
@@ -56,6 +57,10 @@ class AppRoutes {
       GetPage(
         name: RoutesName.contactUsView,
         page: () => ContactUsView(),
+      ),
+      GetPage(
+        name: RoutesName.aboutUsView,
+        page: () => AboutUsView(),
       ),
     ];
   }

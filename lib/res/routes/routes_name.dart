@@ -12,4 +12,5 @@ class RoutesName {
   static const String changePasswordView = '/changePasswordView';
   static const String termsAndConditionView = '/termsAndConditionView';
   static const String contactUsView = '/contactUsView';
+  static const String aboutUsView = '/aboutUsView';
 }

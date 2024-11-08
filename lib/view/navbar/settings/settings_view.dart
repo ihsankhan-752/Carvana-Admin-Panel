@@ -28,12 +28,11 @@ class SettingsView extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               AdminInformationWidget(admin: admin),
-              const Divider(),
               const SizedBox(height: 20),
-              const ProfileListTileWidget(
-                title: "My Profile",
-                icon: Icons.person,
-              ),
+              // const ProfileListTileWidget(
+              //   title: "My Profile",
+              //   icon: Icons.person,
+              // ),
               Divider(color: AppColors.primaryGrey.withOpacity(0.3), height: 0.1),
               ProfileListTileWidget(
                 onPressed: () {
@@ -51,7 +50,10 @@ class SettingsView extends StatelessWidget {
                 icon: Icons.contact_mail_outlined,
               ),
               Divider(color: AppColors.primaryGrey.withOpacity(0.3), height: 0.1),
-              const ProfileListTileWidget(
+              ProfileListTileWidget(
+                onPressed: () {
+                  Get.toNamed(RoutesName.aboutUsView);
+                },
                 title: "Add About Us",
                 icon: Icons.account_box_outlined,
               ),
