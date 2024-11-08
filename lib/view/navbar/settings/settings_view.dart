@@ -43,7 +43,10 @@ class SettingsView extends StatelessWidget {
                 icon: Icons.note_alt_outlined,
               ),
               Divider(color: AppColors.primaryGrey.withOpacity(0.3), height: 0.1),
-              const ProfileListTileWidget(
+              ProfileListTileWidget(
+                onPressed: () {
+                  Get.toNamed(RoutesName.contactUsView);
+                },
                 title: "Add Contact Us",
                 icon: Icons.contact_mail_outlined,
               ),
