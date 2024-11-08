@@ -7,7 +7,19 @@ import 'package:get/get.dart';
 class SettingViewController extends GetxController {
   final SettingsRepository settingsRepository = SettingsRepository();
   final termsAndConditionTextController = TextEditingController().obs;
+  final emailTextController = TextEditingController().obs;
+  final phoneTextController = TextEditingController().obs;
+  final whatsAppTextController = TextEditingController().obs;
+  final websiteTextController = TextEditingController().obs;
   RxBool isLoading = false.obs;
+
+  clearTextInput() {
+    termsAndConditionTextController.value.clear();
+    emailTextController.value.clear();
+    phoneTextController.value.clear();
+    whatsAppTextController.value.clear();
+    websiteTextController.value.clear();
+  }
 
   Future<void> addTermsAndConditions(String termsAndCondition) async {
     if (termsAndCondition.isEmpty) {

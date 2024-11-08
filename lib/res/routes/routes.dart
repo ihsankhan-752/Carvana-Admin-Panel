@@ -55,7 +55,7 @@ class AppRoutes {
       ),
       GetPage(
         name: RoutesName.contactUsView,
-        page: () => const ContactUsView(),
+        page: () => ContactUsView(),
       ),
     ];
   }
