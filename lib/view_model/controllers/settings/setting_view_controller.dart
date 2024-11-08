@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 class SettingViewController extends GetxController {
   final SettingsRepository settingsRepository = SettingsRepository();
   final termsAndConditionTextController = TextEditingController().obs;
+  final aboutUsTextController = TextEditingController().obs;
   final emailTextController = TextEditingController().obs;
   final phoneTextController = TextEditingController().obs;
   final whatsAppTextController = TextEditingController().obs;
@@ -15,6 +16,7 @@ class SettingViewController extends GetxController {
 
   clearTextInput() {
     termsAndConditionTextController.value.clear();
+    aboutUsTextController.value.clear();
     emailTextController.value.clear();
     phoneTextController.value.clear();
     whatsAppTextController.value.clear();
@@ -62,6 +64,25 @@ class SettingViewController extends GetxController {
         isLoading.value = false;
         Utils.toastMessage("Contact us added");
         Get.back();
+      } catch (e) {
+        isLoading.value = false;
+        Utils.centerToastMessage(e.toString());
+      }
+    }
+  }
+
+  Future<void> addAboutUs(String aboutUs) async {
+    if (aboutUs.isEmpty) {
+      Utils.centerToastMessage("Add About Us");
+    } else {
+      try {
+        isLoading.value = true;
+        await settingsRepository.addAboutUs(aboutUs).whenComplete(() {
+          isLoading.value = false;
+
+          Utils.toastMessage("About Us added");
+          Get.back();
+        });
       } catch (e) {
         isLoading.value = false;
         Utils.centerToastMessage(e.toString());

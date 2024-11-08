@@ -11,4 +11,8 @@ class SettingsRepository {
   Future<void> addContactUs(ContactUsModel model) async {
     await settingsServices.addContactUs(model);
   }
+
+  Future<void> addAboutUs(String aboutUs) async {
+    await settingsServices.addAboutUs(aboutUs);
+  }
 }
