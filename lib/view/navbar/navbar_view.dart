@@ -1,7 +1,6 @@
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:carnava_admin_panel/view/navbar/booking/booking_view.dart';
 import 'package:carnava_admin_panel/view/navbar/home/home/home_view.dart';
-import 'package:carnava_admin_panel/view/navbar/members/members_view.dart';
 import 'package:carnava_admin_panel/view/navbar/settings/settings_view.dart';
 import 'package:carnava_admin_panel/view/navbar/widgets/custom_tab_widget_navbar_view.dart';
 import 'package:carnava_admin_panel/view_model/controllers/auth/auth_view_controller.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../res/colors/app_colors.dart';
+import 'notification/notification_view.dart';
 
 class NavbarView extends StatefulWidget {
   const NavbarView({super.key});
@@ -74,9 +74,9 @@ class _NavbarViewState extends State<NavbarView> {
                     currentIndex = 2;
                   });
                 },
-                icon: Icons.group,
+                icon: Icons.notifications_active_outlined,
                 color: currentIndex == 2 ? AppColors.primaryColor : AppColors.primaryBlack,
-                title: "Members",
+                title: "Notifications",
               ),
               CustomTabWidgetNavBarView(
                 onPressed: () {
@@ -97,7 +97,7 @@ class _NavbarViewState extends State<NavbarView> {
         children: [
           const HomeView(),
           BookingView(),
-          const MembersView(),
+          const NotificationView(),
           SettingsView(),
         ],
       ),
