@@ -95,9 +95,9 @@ class _NavbarViewState extends State<NavbarView> {
       body: IndexedStack(
         index: currentIndex,
         children: [
-          HomeView(),
-          const BookingView(),
-          MembersView(),
+          const HomeView(),
+          BookingView(),
+          const MembersView(),
           SettingsView(),
         ],
       ),

@@ -8,18 +8,10 @@ class BookingFireStoreServices {
   final CollectionReference bookingCollection = FirebaseFirestore.instance.collection('booking');
   final CollectionReference carCollection = FirebaseFirestore.instance.collection('cars');
 
-  Future<void> addBooking(BookingModel bookingModel, String bookingId) async {
-    try {
-      await bookingCollection.doc(bookingId).set(bookingModel.toMap());
-    } catch (e) {
-      throw GeneralException(e.toString());
-    }
-  }
-
-  Future<void> updatePaymentType(String bookingId, String paymentType) async {
+  Future<void> updateBookingStatus(String bookingId, String status) async {
     try {
       await bookingCollection.doc(bookingId).update({
-        'paymentType': paymentType,
+        'bookingStatus': status,
       });
     } catch (e) {
       throw GeneralException(e.toString());

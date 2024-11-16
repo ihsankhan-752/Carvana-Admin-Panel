@@ -4,12 +4,8 @@ import '../../models/booking/booking_model.dart';
 class BookingRepository {
   BookingFireStoreServices bookingFireStoreServices = BookingFireStoreServices();
 
-  Future<void> addBooking(BookingModel bookingModel, String bookingId) async {
-    await bookingFireStoreServices.addBooking(bookingModel, bookingId);
-  }
-
-  Future<void> updatePaymentType(String bookingId, String paymentType) async {
-    await bookingFireStoreServices.updatePaymentType(bookingId, paymentType);
+  Future<void> updateBookingStatus(String bookingId, String status) async {
+    await bookingFireStoreServices.updateBookingStatus(bookingId, status);
   }
 
   Stream<List<BookingModel>> getMyBooking() {

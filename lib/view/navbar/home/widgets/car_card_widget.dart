@@ -37,16 +37,17 @@ class CarCardWidget extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: Container(
-                  height: 45,
-                  width: 45,
+                  height: 40,
+                  width: 40,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.primaryGrey.withOpacity(0.1),
+                    color: AppColors.primaryColor.withOpacity(0.2),
                   ),
                   child: PopupMenuButton<int>(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.more_vert,
-                      color: AppColors.primaryGrey.withOpacity(0.7),
+                      color: AppColors.primaryBlack,
+                      size: 24,
                     ),
                     itemBuilder: (context) => [
                       const PopupMenuItem(
