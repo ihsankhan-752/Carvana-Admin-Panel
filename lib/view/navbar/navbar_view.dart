@@ -1,3 +1,4 @@
+import 'package:carnava_admin_panel/core/services/notification_services.dart';
 import 'package:carnava_admin_panel/res/routes/routes_name.dart';
 import 'package:carnava_admin_panel/view/navbar/booking/booking_view.dart';
 import 'package:carnava_admin_panel/view/navbar/home/home/home_view.dart';
@@ -20,12 +21,16 @@ class NavbarView extends StatefulWidget {
 
 class _NavbarViewState extends State<NavbarView> {
   int currentIndex = 0;
+  NotificationServices notificationServices = NotificationServices();
   final AuthViewController authViewController = Get.put(AuthViewController());
 
   @override
   void initState() {
     super.initState();
     authViewController.fetchUserInformation(FirebaseAuth.instance.currentUser!.uid);
+    notificationServices.getPermission();
+    notificationServices.initNotification(context);
+    notificationServices.getToken();
   }
 
   @override

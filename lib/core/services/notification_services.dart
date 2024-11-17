@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
@@ -7,6 +8,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart' as http;
+
+import '../notification_handler/fcm_access_token.dart';
 
 class NotificationServices {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -123,5 +127,61 @@ class NotificationServices {
         notificationDetails,
       );
     });
+  }
+
+  sendNotificationToSpecificUser({required String title, required String body, required String toUserId}) async {
+    DocumentSnapshot tokenSnap = await FirebaseFirestore.instance.collection('tokens').doc(toUserId).get();
+    FcmAccessToken fcmAccessToken = FcmAccessToken();
+    String accessToken;
+    try {
+      accessToken = await fcmAccessToken.getAccessToken();
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error getting access token: $e");
+      }
+      return;
+    }
+
+    Map<String, String> notificationHeader = {
+      'Content-Type': "application/json",
+      'Authorization': "Bearer $accessToken",
+    };
+    Map<String, dynamic> notificationBody = {
+      'title': title,
+      'body': body,
+    };
+    Map<String, dynamic> notificationData = {
+      'status': "done",
+      'userId': FirebaseAuth.instance.currentUser!.uid,
+      'click_action': "FLUTTER_NOTIFICATION_CLICK",
+    };
+    Map<String, dynamic> notificationFormat = {
+      'message': {
+        'notification': notificationBody,
+        'data': notificationData,
+        'token': tokenSnap['token'],
+      },
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse("https://fcm.googleapis.com/v1/projects/restaurant-automation-6f0aa/messages:send"),
+        headers: notificationHeader,
+        body: jsonEncode(notificationFormat),
+      );
+      if (response.statusCode == 200) {
+        if (kDebugMode) {
+          print("Notification sent successfully");
+        }
+      } else {
+        if (kDebugMode) {
+          print("Error sending notification: ${response.body}");
+        }
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("HTTP request failed: $e");
+      }
+    }
   }
 }

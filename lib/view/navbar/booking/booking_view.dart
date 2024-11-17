@@ -1,5 +1,8 @@
+import 'package:carnava_admin_panel/core/services/notification_services.dart';
+import 'package:carnava_admin_panel/models/user_model.dart';
 import 'package:carnava_admin_panel/view/navbar/booking/widgets/booking_info_widget.dart';
 import 'package:carnava_admin_panel/view/navbar/booking/widgets/car_info_widget.dart';
+import 'package:carnava_admin_panel/view/navbar/booking/widgets/custom_popup_menu_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,38 +70,25 @@ class BookingView extends StatelessWidget {
                                 style: AppTextStyles.h1
                                     .copyWith(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryColor),
                               ),
-                              Container(
-                                height: 35,
-                                width: 35,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.primaryColor.withOpacity(0.2),
-                                ),
-                                child: PopupMenuButton<int>(
-                                  icon: const Icon(
-                                    Icons.more_vert,
-                                    color: AppColors.primaryBlack,
-                                    size: 20,
-                                  ),
-                                  itemBuilder: (context) => [
-                                    const PopupMenuItem(
-                                      value: 0,
-                                      child: Text("Approve"),
-                                    ),
-                                    const PopupMenuItem(
-                                      value: 1,
-                                      child: Text("Cancel"),
-                                    ),
-                                  ],
-                                  onSelected: (value) {
-                                    if (value == 0) {
-                                      bookingController.updateBookingStatus("Approve", booking.bookingId);
-                                    } else if (value == 1) {
-                                      bookingController.updateBookingStatus("Cancel", booking.bookingId);
-                                    }
-                                  },
-                                ),
-                              ),
+                              CustomPopupMenuWidget(
+                                onSelected: (value) {
+                                  if (value == 0) {
+                                    bookingController.updateBookingStatus("Approve", booking.bookingId);
+                                    NotificationServices().sendNotificationToSpecificUser(
+                                      title: "Congratulations",
+                                      body: "Your Booking is Approved",
+                                      toUserId: booking.userId,
+                                    );
+                                  } else if (value == 1) {
+                                    bookingController.updateBookingStatus("Cancel", booking.bookingId);
+                                    NotificationServices().sendNotificationToSpecificUser(
+                                      title: "Sorry",
+                                      body: "Your Booking is Cancelled",
+                                      toUserId: booking.userId,
+                                    );
+                                  }
+                                },
+                              )
                             ],
                           ),
                           const SizedBox(height: 20),
@@ -114,6 +104,29 @@ class BookingView extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           BookingInfoWidget(booking: booking),
+                          const SizedBox(height: 10),
+                          const Divider(),
+                          const SizedBox(height: 10),
+                          Center(
+                            child: Text(
+                              "User Information",
+                              style: AppTextStyles.h1
+                                  .copyWith(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryColor),
+                            ),
+                          ),
+                          StreamBuilder(
+                              stream: FirebaseFirestore.instance.collection('users').doc(booking.userId).snapshots(),
+                              builder: (context, userSnap) {
+                                if (!userSnap.hasData) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+
+                                final user = UserModel.fromMap(userSnap.data!);
+
+                                return Text(user.username);
+                              })
                         ],
                       ),
                     ),
